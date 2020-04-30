@@ -1,21 +1,19 @@
 #include <vector>
 
-#include "matrixutils.h"
-#include "munkres.h"
+#include "munkres-cpp/munkres.h"
+#include "../../tests/matrix_test_utils.h"
 
 
 
-// Main function.
-int main (int argc, char * argv [])
+int main (int /*argc*/, char * /*argv*/ [])
 {
-    std::vector <Matrix <double> *> matrices;
-    read <double> (matrices);
+    std::vector<munkres_cpp::MUNKRES_CPP_MATRIX_TYPE<MUNKRES_CPP_VALUE_TYPE> *> matrices;
+    read (matrices);
 
 
     for (size_t i = 0; i < matrices.size (); ++i) {
         std::cout << "Test case " << i + 1 << " from " << matrices.size () << std::endl;
-        Munkres munkres;
-        auto matrix = * matrices [i];
-        munkres.solve (matrix);
+        auto matrix = *matrices [i];
+        munkres_cpp::Munkres<MUNKRES_CPP_VALUE_TYPE> munkres (matrix);
     }
 }
